@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePlus International Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Root Variables for Colors & Consistency --- */
+        :root {
+            --primary-color: #2a6f97;
+            --secondary-color: #014f86;
+            --accent-color: #61a5c2;
+            --text-dark: #2c3e50;
+            --text-light: #f8f9fa;
+            --bg-light: #f4f7f6;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            margin-top: 70px;
+            height: 85vh;
+            background: linear-gradient(rgba(1, 79, 134, 0.7), rgba(42, 111, 151, 0.6)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-main {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-main:hover {
+            background-color: #ffffff;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Services Section --- */
+        .section-padding {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px 20px;
+            border-radius: 10px;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        /* --- Appointment Section (Interactive Form) --- */
+        .appointment-section {
+            background-color: var(--bg-light);
+            padding: 80px 5%;
+        }
+
+        .appointment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* --- Success Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-content i {
+            font-size: 4rem;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            margin-top: 20px;
+            padding: 8px 25px;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #1a3644;
+            color: white;
+            padding: 40px 5% 20px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .footer-col p, .footer-col ul {
+            list-style: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- Animations & Responsive Design --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .submit-btn { grid-column: span 1; }
+            .nav-links { display: none; } /* Simplified for template preview */
+            .hero-content h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fa-solid to fa-house-medical"></i> CarePlus
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#appointment">Appointment</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#appointment" class="nav-btn">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Health Is Our Top Priority</h1>
+            <p>Providing world-class medical expertise and compassionate care with cutting-edge technology for you and your family.</p>
+            <a href="#appointment" class="btn-main">Make an Appointment</a>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <h2 class="section-title">Our Medical Services</h2>
+        <p class="section-subtitle">We offer comprehensive healthcare services across various specialized departments.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <h3>Cardiology</h3>
+                <p>Advanced heart care, diagnostics, and customized treatment plans by top cardiologists.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-brain"></i>
+                <h3>Neurology</h3>
+                <p>Expert diagnosis and treatment for complex brain, spinal cord, and nervous system disorders.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-baby"></i>
+                <h3>Pediatrics</h3>
+                <p>Dedicated compassionate medical care, immunizations, and checkups for your little ones.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-crutch"></i>
+                <h3>Orthopedics</h3>
+                <p>Comprehensive bone, joint, and muscular care, including robotic surgeries and rehab.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="appointment" class="appointment-section">
+        <div class="appointment-container">
+            <h2 class="section-title" style="text-align: center;">Book an Appointment</h2>
+            <p class="section-subtitle" style="text-align: center;">Fill out the form below and our team will confirm your slot within an hour.</p>
+            
+            <form id="bookingForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="+1 234 567 890">
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Select Department</label>
+                        <select id="department" required>
+                            <option value="">-- Choose Department --</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="orthopedics">Orthopedics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time" required>
+                            <option value="">-- Choose Time Slot --</option>
+                            <option value="morning">Morning (09:00 AM - 12:00 PM)</option>
+                            <option value="afternoon">Afternoon (01:00 PM - 04:00 PM)</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Symptoms / Notes (Optional)</label>
+                        <textarea id="message" rows="4" placeholder="Briefly describe your condition..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Appointment</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About CarePlus</h4>
+                <p>A premier healthcare institution dedicated to medical excellence, global standard facilities, and clinical expertise.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home" style="color: white; text-decoration: none;">Home</a></li>
+                    <li><a href="#services" style="color: white; text-decoration: none;">Services</a></li>
+                    <li><a href="#appointment" style="color: white; text-decoration: none;">Bookings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p><i class="fa-solid fa-phone"></i> +1 (555) 019-2834</p>
+                <p><i class="fa-solid fa-envelope"></i> info@careplus.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> 123 Medical Center Dr, NY</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CarePlus Hospital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Appointment Requested!</h2>
+            <p style="margin-top: 10px; color: #555;">Thank you <strong id="patientName"></strong>. Your appointment request for <strong id="chosenDept"></strong> has been received. We will email you details shortly.</p>
+            <button class="close-modal" id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Ensure script runs after HTML loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('bookingForm');
+            const modal = document.getElementById('successModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            // Handle Form Submission
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent page reload
+
+                // Get form values dynamically for interactivity
+                const nameVal = document.getElementById('name').value;
+                const deptVal = document.getElementById('department').options[document.getElementById('department').selectedIndex].text;
+
+                // Inject data into the interactive Modal popup
+                document.getElementById('patientName').innerText = nameVal;
+                document.getElementById('chosenDept').innerText = deptVal;
+
+                // Show success feedback smooth modal
+                modal.style.display = 'flex';
+                
+                // Reset form
+                form.reset();
+            });
+
+            // Close Modal Action
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Close Modal clicking outside content
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Simple active state updater for Navigation Links during scroll
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    links.forEach(l => l.classList.remove('active'));
+                    if(!this.classList.contains('nav-btn')) {
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
